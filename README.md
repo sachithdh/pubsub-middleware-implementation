@@ -1,6 +1,6 @@
 # pubsub-middleware-implementation
 
-A progressive implementation of a publish-subscribe middleware system using Python sockets, demonstrating three different levels of client-server communication patterns.
+A progressive implementation of a publish-subscribe middleware system using Python sockets, demonstrating three different levels of client-server communication patterns, which I developed as part of a university Middleware Architecturecourse module assignment.
 
 ## Project Structure
 
