@@ -15,7 +15,8 @@ def broadcast(message, sender_ip):
                     conn.sendall(message.encode())
                 except:
                     conn.close()
-                    clients.remove(client)
+                    if client in clients:
+                        clients.remove(client)
 
 
 def client_handler(client_socket, client_ip, role):
@@ -63,7 +64,7 @@ def start_server(PORT):
             role = client_socket.recv(1024).decode().strip().upper()
 
             if role not in ("PUBLISHER", "SUBSCRIBER"):
-                print(f"Invalid role from {addr}. Disconnecting.")
+                print(f"Invalid role from {addr[0]}. Disconnecting.")
                 client_socket.close()
                 continue
 
@@ -88,4 +89,4 @@ if __name__ == "__main__":
             print("ERROR: Port must be between 1 and 65535")
             sys.exit(1)
         
-        start_server(int(PORT))
+        start_server(PORT)

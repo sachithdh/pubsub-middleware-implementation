@@ -37,12 +37,8 @@ def client_program(SERVER, PORT, ROLE):
             if command.lower() == "terminate":
                 break
 
-            # if ROLE == "PUBLISHER":
-            #     client_socket.sendall(command.encode())
-
-            client_socket.sendall(command.encode())
-
-
+            if ROLE == "PUBLISHER":
+                client_socket.sendall(command.encode())
 
     except KeyboardInterrupt:
         print("\nInterrupted by user.")
