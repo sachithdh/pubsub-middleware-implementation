@@ -21,8 +21,8 @@ def client_program(SERVER, PORT):
 
             client_socket.sendall(command.encode())
     except KeyboardInterrupt:
-        print("\n[INFO] Interrupted by user.")
-        exit()
+        print("\nInterrupted by user.")
+        sys.exit(1)
         
     finally:
         client_socket.close()
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 3 :
         print(f"Invalid command")
         print("Usage: python file_name.py <server_ip> <port>")
-        exit()
+        sys.exit(1)
 
     else:
         HOST = sys.argv[1]
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
         if not (1 <= PORT <= 65535):
             print("ERROR: Port must be between 1 and 65535")
-            exit()
+            sys.exit(1)
 
         
         client_program(HOST, PORT)
