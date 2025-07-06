@@ -1,8 +1,10 @@
+#!/usr/bin/python
+
 import socket
 import threading
 import sys
 
-HOST = "0.0.0.0"
+HOST = "192.168.84.98"
 
 lock = threading.Lock()
 
@@ -14,6 +16,10 @@ def client_handler(client_socket, addr):
         while True:
             message = client_socket.recv(1024).decode()
             if not message:
+                break
+
+            if message.lower() == "terminate":
+                print(f"{addr} DISCONNECTED.")
                 break
 
             print(f"[CLIENT]: {message}")

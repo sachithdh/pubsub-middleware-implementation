@@ -2,7 +2,7 @@ import socket
 import threading
 import sys
 
-HOST = "0.0.0.0"
+HOST = "192.168.84.98"
 clients = []
 lock = threading.Lock()
 
@@ -33,10 +33,8 @@ def client_handler(client_socket, client_ip, role):
                 break
 
 
-            print(f"[{role} {client_ip}](print): {message}")
-            
             if role == "PUBLISHER":
-                broadcast(f"[PUBLISHER {client_ip}(broadcast)]: {message}", client_ip)
+                broadcast(f"[PUBLISHER {client_ip}]: {message}", client_ip)
 
     except Exception as e:
         print(f"ERROR from {client_ip}: {e}")

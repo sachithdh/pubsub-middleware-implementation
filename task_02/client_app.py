@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import socket
 import threading
 import sys
@@ -27,7 +29,7 @@ def client_program(SERVER, PORT, ROLE):
 
     print("type 'terminate' to exit\n")
 
-    if ROLE == "SUBSCRIBER":
+    if ROLE.lower() == "subscriber":
         threading.Thread(target=receive_messages, args=(client_socket,), daemon=True).start()
 
     
@@ -37,7 +39,7 @@ def client_program(SERVER, PORT, ROLE):
             if command.lower() == "terminate":
                 break
 
-            if ROLE == "PUBLISHER":
+            if ROLE.lower() == "publisher":
                 client_socket.sendall(command.encode())
 
     except KeyboardInterrupt:
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     if not (1 <= PORT <= 65535):
         print("ERROR: Port must be between 1 and 65535")
         sys.exit(1)
-    if ROLE not in ("PUBLISHER", "SUBSCRIBER"):
+    if ROLE.lower() not in ("publisher", "subscriber"):
         print("ERROR: Role must be PUBLISHER or SUBSCRIBER")
         sys.exit(1)
 

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import socket
 import threading
 import sys
@@ -15,13 +17,17 @@ def client_program(SERVER, PORT):
 
     try:
         while True:
+            
             command = input("> ")
+
+            client_socket.sendall(command.encode())
+
             if command.lower() == "terminate":
                 break
 
-            client_socket.sendall(command.encode())
     except KeyboardInterrupt:
         print("\nInterrupted by user.")
+        client_socket.sendall("terminate".encode())
         sys.exit(1)
         
     finally:

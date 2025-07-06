@@ -2,7 +2,7 @@ import socket
 import threading
 import sys
 
-HOST = "0.0.0.0"
+HOST = "192.168.84.98"
 
 
 lock = threading.Lock()
